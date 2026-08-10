@@ -10,7 +10,7 @@ branch = "master"
 directory = "pi"
 
 [collect]
-exclude = ["*-debug"]
+exclude = ["*debug*"]
 
 #[hooks]
 #pre_build = ["scripts/prepare.sh"]
