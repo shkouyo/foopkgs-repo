@@ -10,7 +10,7 @@ branch = "master"
 directory = "ungoogled-chromium-bin"
 
 [collect]
-exclude = ["*bin*"]
+exclude = ["*debug*", "ungoogled-chromium-1*"]
 
 #[hooks]
 #pre_build = ["scripts/prepare.sh"]
