@@ -1,0 +1,23 @@
+[[maintainers]]
+name = "ShinKouyo"
+email = "i@0x0f.dev"
+
+vcs = "none"
+
+[pkgbuild_source]
+url = "https://github.com/CachyOS/cachyos-aur-derived.git"
+branch = "master"
+directory = "ungoogled-chromium-bin"
+
+[collect]
+exclude = []
+
+#[hooks]
+#pre_build = ["scripts/prepare.sh"]
+#post_build = ["scripts/strip-debug.sh"]
+#on_success = ["scripts/notify.sh"]
+#on_failure = ["scripts/collect-log.sh"]
+
+[aur]
+#name = "ungoogled-chromium-bin"
+submit = false
