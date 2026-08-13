@@ -16,8 +16,6 @@ body:
           required: true
         - label: "The package has not already been requested"
           required: true
-        - label: "The build does not take too long or consume excessive resources"
-          required: false
   - type: input
     id: upstream
     attributes:
