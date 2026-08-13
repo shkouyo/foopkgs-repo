@@ -34,10 +34,10 @@ jobs:
             if [ -n "${key}" ]; then
               avatar_of[${key}]="https://github.com/${key}.png?size=80"
             else
-              author=$(curl -sf -H "Authorization: Bearer ${GITHUB_TOKEN}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/commits/${sha}")
-              key=$(jq -r '.author.login // empty' 2>/dev/null <<<"${author}")
+              author=$(curl -sf -H "Authorization: Bearer ${GITHUB_TOKEN}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/commits/${sha}") || true
+              key=$(jq -r '.author.login // empty' 2>/dev/null <<<"${author}") || true
               if [ -n "${key}" ]; then
-                avatar_of[${key}]="$(jq -r '.author.avatar_url // empty' 2>/dev/null <<<"${author}")&s=80"
+                avatar_of[${key}]="$(jq -r '.author.avatar_url // empty' 2>/dev/null <<<"${author}")&s=80" || true
               fi
             fi
             total[${key:-${email}}]=$(( ${total[${key:-${email}}]:-0} + count ))
@@ -48,11 +48,11 @@ jobs:
           while IFS=$'\t' read -r count key; do
             img=
             if [ -n "${avatar_of[${key}]+x}" ]; then
-              img=$(curl -sfL "${avatar_of[${key}]}" | base64 -w0)
+              img=$(curl -sfL "${avatar_of[${key}]}" | base64 -w0) || true
             fi
             if [ -z "${img}" ]; then
               email_hash=$(printf '%s' "${key}" | tr '[:upper:]' '[:lower:]' | sha256sum | cut -d' ' -f1)
-              img=$(curl -sfL "https://libravatar.org/avatar/${email_hash}?d=retro&s=40" | base64 -w0)
+              img=$(curl -sfL "https://libravatar.org/avatar/${email_hash}?d=retro&s=40" | base64 -w0) || true
             fi
             if [ -z "${img}" ]; then
               echo "Skip ${key}: avatar download failed"
