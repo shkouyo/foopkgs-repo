@@ -21,7 +21,7 @@ jobs:
       image: docker.io/archlinux:latest
     steps:
       - name: Install dependencies
-        run: pacman -Syu --noconfirm --needed git namcap shellcheck
+        run: pacman -Sy --noconfirm --needed git namcap shellcheck
 
       - name: Checkout
         uses: actions/checkout@v7
