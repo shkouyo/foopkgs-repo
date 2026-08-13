@@ -41,3 +41,13 @@ We are grateful to all contributors. If you would like to contribute, please rea
 <a href="https://github.com/shkouyo/foopkgs-repo/graphs/contributors">
   <img src="CONTRIBUTORS.svg" alt="Contributors of foopkgs" />
 </a>
+
+## License
+
+Copyright (C) foopkgs contributors
+
+Files in the `main` branch that are not marked with an `SPDX-License-Identifier` header or any other explicit notice are licensed under the Apache License 2.0, whose full text is available in [COPYING.Apache-2.0](COPYING.Apache-2.0).
+
+Files in the package branches that carry neither an `SPDX-License-Identifier` header nor a `REUSE.toml` annotation are likewise licensed under the BSD Zero Clause License, whose full text is to be added in [COPYING.0BSD](COPYING.0BSD).
+
+All files are provided WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
