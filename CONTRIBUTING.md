@@ -67,10 +67,14 @@ To add a package, create a branch named after the package, place the `PKGBUILD` 
 
 The following conventions apply:
 
-- License annotations follow the Arch Linux RFCs on [SPDX license identifiers](https://rfc.archlinux.page/0016-spdx-license-identifiers/), [REUSE compliance](https://rfc.archlinux.page/0052-reuse/), and [licensing package sources](https://rfc.archlinux.page/0040-license-package-sources/).
-- PKGBUILD specifics follow the [PKGBUILD documentation](https://wiki.archlinux.org/title/PKGBUILD), the [Arch package guidelines](https://wiki.archlinux.org/title/Arch_package_guidelines), and the [guide to creating packages](https://wiki.archlinux.org/title/Creating_packages).
-- Packages that are also maintained on AUR must additionally follow the [AUR submission guidelines](https://wiki.archlinux.org/title/AUR_submission_guidelines#Rules_of_submission).
-- Architecture support follows [RFC 0032 on Arch Linux ports](https://rfc.archlinux.page/0032-arch-linux-ports/).
+- Annotate licenses with [SPDX license identifiers](https://rfc.archlinux.page/0016-spdx-license-identifiers/).
+- Make the repository [REUSE compliant](https://rfc.archlinux.page/0052-reuse/).
+- Follow [RFC 0040 on licensing package sources](https://rfc.archlinux.page/0040-license-package-sources/).
+- Write the `PKGBUILD` according to the [PKGBUILD documentation](https://wiki.archlinux.org/title/PKGBUILD).
+- Follow the [Arch package guidelines](https://wiki.archlinux.org/title/Arch_package_guidelines).
+- Consult the [guide to creating packages](https://wiki.archlinux.org/title/Creating_packages).
+- Follow the [AUR submission guidelines](https://wiki.archlinux.org/title/AUR_submission_guidelines#Rules_of_submission).
+- Respect [RFC 0032 on Arch Linux ports](https://rfc.archlinux.page/0032-arch-linux-ports/) for architecture support.
 
 ## Commit messages
 
