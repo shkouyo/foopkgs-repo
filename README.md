@@ -30,13 +30,13 @@ sudo pacman -Syu
 
 The repository is built and published automatically by [Varve](https://git.0x0f.dev/shkouyo/varve). Build progress can be followed live on [the build status page](https://varve.0x0f.dev/), while [the package index](https://varve.0x0f.dev/packages) lists every available package.
 
-## Maintainers
+## Contributing
 
 foopkgs was created by [ShinKouyo](https://0x0f.dev) and is maintained by:
 
 - ShinKouyo \<<i@0x0f.dev>\>
 
-We are grateful to all contributors.
+We are grateful to all contributors. If you would like to contribute, please read the guidelines in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 <a href="https://github.com/shkouyo/foopkgs-repo/graphs/contributors">
   <img src="CONTRIBUTORS.svg" alt="Contributors of foopkgs" />
