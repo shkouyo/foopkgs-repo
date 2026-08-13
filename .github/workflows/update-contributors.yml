@@ -21,6 +21,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           output: CONTRIBUTORS.svg
           hideName: 'true'
+          avatarSize: '64'
 
       - name: Commit CONTRIBUTORS.svg to main
         run: |
