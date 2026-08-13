@@ -23,6 +23,8 @@ jobs:
           fetch-depth: 0
 
       - name: Upgrade packages
+        env:
+          TERM: xterm
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           useradd -m builder
