@@ -14,6 +14,8 @@ body:
       options:
         - label: "The package is currently provided by this repository"
           required: true
+        - label: "I read carefully and don't check this one"
+          required: false
         - label: "The issue has not already been reported or there is no duplicate"
           required: true
   - type: input

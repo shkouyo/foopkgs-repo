@@ -14,6 +14,8 @@ body:
       options:
         - label: "The package is not available in the official Arch repositories"
           required: true
+        - label: "I read carefully and don't check this one"
+          required: false
         - label: "The package has not already been requested"
           required: true
   - type: input
