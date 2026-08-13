@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
 
       - name: Generate CONTRIBUTORS.svg
-        uses: jaywcjlove/github-action-contributors@latest
+        uses: jaywcjlove/github-action-contributors@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           output: CONTRIBUTORS.svg
