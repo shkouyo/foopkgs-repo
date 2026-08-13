@@ -1,0 +1,34 @@
+name: Update contributors
+
+on:
+  workflow_dispatch:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  contributors:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Generate CONTRIBUTORS.svg
+        uses: jaywcjlove/github-action-contributors@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          output: CONTRIBUTORS.svg
+          hideName: 'true'
+
+      - name: Commit CONTRIBUTORS.svg to main
+        run: |
+          git checkout main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CONTRIBUTORS.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update CONTRIBUTORS.svg [skip ci]"
+            git push origin main
+          fi
