@@ -17,7 +17,12 @@ permissions:
 jobs:
   reuse-lint:
     runs-on: ubuntu-latest
+    container:
+      image: docker.io/archlinux:latest
     steps:
+      - name: Install dependencies
+        run: pacman -Syu --noconfirm --needed git reuse
+
       - name: Checkout
         uses: actions/checkout@v7
         with:
@@ -26,10 +31,6 @@ jobs:
       - name: Skip branches without PKGBUILD
         if: hashFiles('PKGBUILD') == ''
         run: echo "No PKGBUILD in this branch; skipping."
-
-      - name: Install reuse
-        if: hashFiles('PKGBUILD') != ''
-        run: sudo apt-get update && sudo apt-get install -y reuse
 
       - name: Run reuse lint
         if: hashFiles('PKGBUILD') != ''
