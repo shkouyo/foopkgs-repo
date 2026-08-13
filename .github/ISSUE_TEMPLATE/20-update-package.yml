@@ -6,6 +6,16 @@ body:
     attributes:
       value: |
         Thanks for reporting. Please fill in the form below.
+  - type: checkboxes
+    id: precheck
+    attributes:
+      label: "Pre-submission checklist"
+      description: "Please confirm the following before submitting"
+      options:
+        - label: "The package is currently provided by this repository"
+          required: true
+        - label: "The issue has not already been reported or there is no duplicate"
+          required: true
   - type: input
     id: package_name
     attributes:

@@ -40,7 +40,7 @@ body:
       label: "License"
       description: |
         The submitted software should be free (as in freedom) software, or at least open source software.
-        Only the name is needed for standard licenses, e.g. GPL-3.0-or-later. Include a link for non-standard licenses and EULAs.
+        Only the name is needed for standard licenses, e.g. GPL-3.0-or-later. Include a link for non-standard licenses.
       placeholder: "GPL-3.0-or-later"
     validations:
       required: true
