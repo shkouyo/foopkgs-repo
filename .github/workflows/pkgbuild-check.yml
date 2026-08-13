@@ -1,0 +1,41 @@
+name: Check PKGBUILD
+
+on:
+  push:
+    branches-ignore:
+      - main
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branch to check
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  pkgbuild-check:
+    runs-on: ubuntu-latest
+    container:
+      image: docker.io/archlinux:latest
+    steps:
+      - name: Install dependencies
+        run: pacman -Syu --noconfirm --needed git namcap shellcheck
+
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.branch || github.ref_name }}
+
+      - name: Skip branches without PKGBUILD
+        if: hashFiles('PKGBUILD') == ''
+        run: echo "No PKGBUILD in this branch; skipping."
+
+      - name: Run namcap
+        if: hashFiles('PKGBUILD') != ''
+        run: namcap PKGBUILD
+
+      - name: Run shellcheck
+        if: hashFiles('PKGBUILD') != ''
+        run: shellcheck --shell=bash --exclude=SC2034,SC2154 PKGBUILD
