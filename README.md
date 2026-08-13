@@ -1,6 +1,6 @@
 # foopkgs
 
-foopkgs is a third-party software repository for Arch Linux.
+foopkgs is a third-party software repository for Arch Linux on x86_64.
 
 ## Setup
 
@@ -37,6 +37,8 @@ foopkgs was created by [ShinKouyo](https://0x0f.dev) and is maintained by:
 - ShinKouyo \<<i@0x0f.dev>\>
 
 We are grateful to all contributors. If you would like to contribute, please read the guidelines in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+You can request a new package by opening an [Issue](https://github.com/shkouyo/foopkgs-repo/issues/new?template=), or feel free to submit a [Pull request](https://github.com/shkouyo/foopkgs-repo/compare). The software you submit should be free ([as in freedom](https://www.gnu.org/philosophy/free-sw)) software, or at least [open source](https://opensource.org/osd) software.
 
 <a href="https://github.com/shkouyo/foopkgs-repo/graphs/contributors">
   <img src="CONTRIBUTORS.svg" alt="Contributors of foopkgs" />
