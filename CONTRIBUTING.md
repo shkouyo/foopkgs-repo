@@ -76,6 +76,19 @@ The following conventions apply:
 - Follow the [AUR submission guidelines](https://wiki.archlinux.org/title/AUR_submission_guidelines#Rules_of_submission).
 - Respect [RFC 0032 on Arch Linux ports](https://rfc.archlinux.page/0032-arch-linux-ports/) for architecture support.
 
+## Package checks
+
+The packaging workflow relies on `pkgctl`, which is provided by the [devtools package](https://archlinux.org/packages/extra/any/devtools/). The following checks apply to every package branch, except for branches that contain nothing but a `.varve.toml` file:
+
+- Include a `.nvchecker.toml` whenever possible, so that the package can be kept up to date with `pkgctl version upgrade`.
+- Verify the license annotations with `pkgctl license check` or `reuse lint`.
+- Verify the `PKGBUILD` with `namcap PKGBUILD` and `shellcheck --shell=bash --exclude=SC2034,SC2154 PKGBUILD`.
+- When possible, test the build in a clean chroot before pushing, using [the pacman.conf used by the Varve build worker](https://git.0x0f.dev/shkouyo/varve/raw/branch/main/container/worker/pacman.conf) and following the [guide to building in a clean chroot](https://wiki.archlinux.org/title/DeveloperWiki:Building_in_a_clean_chroot).
+
+## CI
+
+The repository's continuous integration runs on GitHub Actions automatically for every package branch. It performs the checks listed above and updates packages whenever `.nvchecker.toml` reports a newer upstream version.
+
 ## Commit messages
 
 Commit messages should follow the guidance in [On commit messages for Arch Linux package packaging](https://0x0f.dev/posts/arch-package-commit-message/), which describes the expected format and suitable commit types. Consistent commit messages keep the history of the package branches uniform and easy to read.
