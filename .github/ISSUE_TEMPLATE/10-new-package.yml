@@ -1,0 +1,47 @@
+name: "Request new package"
+description: "Request to add a new package to the repository"
+title: "[newpkg] package-name"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for requesting a new package. Please fill in the form below.
+  - type: checkboxes
+    id: precheck
+    attributes:
+      label: "Pre-submission checklist"
+      description: "Please confirm the following before submitting"
+      options:
+        - label: "The package is not available in the official Arch repositories"
+          required: true
+        - label: "The package has not already been requested"
+          required: true
+        - label: "The build does not take too long or consume excessive resources"
+          required: true
+  - type: input
+    id: upstream
+    attributes:
+      label: "Upstream URL"
+      description: |
+        Link to the AUR package base or the upstream Git repository containing the PKGBUILD.
+      placeholder: "https://aur.archlinux.org/pkgbase/package-name"
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: "Purpose"
+      description: |
+        What does the package do? Who is it for? What are its benefits over existing alternatives?
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: "License"
+      description: |
+        Name of the copyright license. Packages with licenses that prohibit redistribution will be rejected.
+        Only the name is needed for standard licenses, e.g. GPL-3.0-or-later. Include a link for non-standard licenses and EULAs.
+      placeholder: "GPL-3.0-or-later"
+    validations:
+      required: true

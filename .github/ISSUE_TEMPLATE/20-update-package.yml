@@ -1,0 +1,34 @@
+name: "Update package"
+description: "Request an upstream version bump, a build configuration change, or report a packaging error"
+title: "[update] package-name"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please fill in the form below.
+  - type: input
+    id: package_name
+    attributes:
+      label: "Package name"
+      description: "Name of the affected package"
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: "Issue type"
+      options:
+        - "Upstream version bump"
+        - "Build configuration change"
+        - "Packaging error or bug"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: |
+        Describe the issue in detail. For version bumps, include the current and latest versions.
+        For errors, include the error message and steps to reproduce.
+    validations:
+      required: true
