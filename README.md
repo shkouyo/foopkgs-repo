@@ -38,7 +38,7 @@ foopkgs was created by [ShinKouyo](https://0x0f.dev) and is maintained by:
 
 We are grateful to all contributors. If you would like to contribute, please read the guidelines in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-You can request a new package by opening an [Issue](https://github.com/shkouyo/foopkgs-repo/issues/new?template=), or feel free to submit a [Pull request](https://github.com/shkouyo/foopkgs-repo/compare). The software you submit should be free ([as in freedom](https://www.gnu.org/philosophy/free-sw)) software, or at least [open source](https://opensource.org/osd) software.
+You can request a new package by opening an [Issue](https://github.com/shkouyo/foopkgs-repo/issues/new?template=10-new-package.yml), or feel free to submit a [Pull request](https://github.com/shkouyo/foopkgs-repo/compare). The software you submit should be free ([as in freedom](https://www.gnu.org/philosophy/free-sw)) software, or at least [open source](https://opensource.org/osd) software.
 
 ![Contributors of foopkgs](CONTRIBUTORS.svg)
 
