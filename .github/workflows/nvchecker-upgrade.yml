@@ -1,0 +1,53 @@
+name: Upgrade packages
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  auto-upgrade:
+    runs-on: ubuntu-latest
+    container:
+      image: docker.io/archlinux/archlinux:base-devel
+    steps:
+      - name: Install dependencies
+        run: pacman -Sy --noconfirm --needed git devtools
+
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Upgrade packages
+        run: |
+          useradd -m builder
+          for branch in $(git for-each-ref --format='%(refname:short)' refs/remotes/origin | grep -vE '^origin/(HEAD|main)$' | sed 's/^origin\///'); do
+            echo "==> $branch"
+            git checkout -f --quiet --detach "origin/$branch"
+            if [ ! -f .nvchecker.toml ]; then
+              echo "No .nvchecker.toml in $branch; skipping."
+              continue
+            fi
+            if ! pkgctl version upgrade; then
+              echo "pkgctl version upgrade failed for $branch; skipping."
+              continue
+            fi
+            if ! runuser -u builder -- makepkg --printsrcinfo > .SRCINFO; then
+              echo "makepkg --printsrcinfo failed for $branch; skipping."
+              continue
+            fi
+            if git diff --quiet; then
+              echo "No changes in $branch; skipping."
+              continue
+            fi
+            git add -A
+            git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit --quiet -m "upgpkg: $(date +%Y-%m-%d\ %H:%M) auto upgrade $branch
+
+Signed-off-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
+            git push --quiet origin "HEAD:$branch"
+          done
+          echo "Done."
