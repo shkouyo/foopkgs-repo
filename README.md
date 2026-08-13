@@ -38,4 +38,6 @@ foopkgs was created by [ShinKouyo](https://0x0f.dev) and is maintained by:
 
 We are grateful to all contributors.
 
-[![Contributors of foopkgs](CONTRIBUTORS.svg)](https://github.com/shkouyo/foopkgs-repo/graphs/contributors)
+<a href="https://github.com/shkouyo/foopkgs-repo/graphs/contributors">
+  <img src="CONTRIBUTORS.svg" alt="Contributors of foopkgs" />
+</a>
