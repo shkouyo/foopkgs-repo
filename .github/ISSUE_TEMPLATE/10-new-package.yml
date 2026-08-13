@@ -17,14 +17,15 @@ body:
         - label: "The package has not already been requested"
           required: true
         - label: "The build does not take too long or consume excessive resources"
-          required: true
+          required: false
   - type: input
     id: upstream
     attributes:
       label: "Upstream URL"
       description: |
-        Link to the AUR package base or the upstream Git repository containing the PKGBUILD.
-      placeholder: "https://aur.archlinux.org/pkgbase/package-name"
+        Link to the upstream project of the software, such as its website
+        or source repository.
+      placeholder: "https://example.org/software"
     validations:
       required: true
   - type: textarea
@@ -40,7 +41,7 @@ body:
     attributes:
       label: "License"
       description: |
-        Name of the copyright license. Packages with licenses that prohibit redistribution will be rejected.
+        The submitted software should be free (as in freedom) software, or at least open source software.
         Only the name is needed for standard licenses, e.g. GPL-3.0-or-later. Include a link for non-standard licenses and EULAs.
       placeholder: "GPL-3.0-or-later"
     validations:
