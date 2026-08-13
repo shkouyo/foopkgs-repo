@@ -1,6 +1,8 @@
 name: "Request new package"
 description: "Request to add a new package to the repository"
 title: "[newpkg] package-name"
+labels:
+  - "request:new-pkg"
 body:
   - type: markdown
     attributes:

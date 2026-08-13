@@ -1,6 +1,8 @@
 name: "Update package"
 description: "Request an upstream version bump, a build configuration change, or report a packaging error"
 title: "[update] package-name"
+labels:
+  - "request:update-pkg"
 body:
   - type: markdown
     attributes:

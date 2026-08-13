@@ -1,6 +1,8 @@
 name: "Remove package"
 description: "Request removal of an existing package"
 title: "[remove] package-name"
+labels:
+  - "request:remove-pkg"
 body:
   - type: markdown
     attributes:
