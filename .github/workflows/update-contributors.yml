@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 ShinKouyo <i@0x0f.dev>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 name: Update contributors
 
 on:
@@ -16,12 +19,65 @@ jobs:
           fetch-depth: 0
 
       - name: Generate CONTRIBUTORS.svg
-        uses: jaywcjlove/github-action-contributors@main
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          output: CONTRIBUTORS.svg
-          hideName: 'true'
-          avatarSize: '40'
+        run: |
+          size=40
+          margin=5
+          width=740
+          cols=$(( width / (size + margin * 2) ))
+          declare -A email_login=(
+            [sihaogang@gmail.com]=Capricornus007
+          )
+          declare -A avatar_of=()
+          declare -A total=()
+          while IFS=$'\t' read -r count email sha; do
+            key=${email_login[${email}]:-}
+            if [ -n "${key}" ]; then
+              avatar_of[${key}]="https://github.com/${key}.png?size=80"
+            else
+              author=$(curl -sf -H "Authorization: Bearer ${GITHUB_TOKEN}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/commits/${sha}")
+              key=$(jq -r '.author.login // empty' 2>/dev/null <<<"${author}")
+              if [ -n "${key}" ]; then
+                avatar_of[${key}]="$(jq -r '.author.avatar_url // empty' 2>/dev/null <<<"${author}")&s=80"
+              fi
+            fi
+            total[${key:-${email}}]=$(( ${total[${key:-${email}}]:-0} + count ))
+          done < <(git log --all --no-merges --format='%aN%x09%aE%x09%H' | awk -F'\t' '{c[$2]++; if (!($2 in s)) s[$2]=$3} END {for (k in c) print c[k] FS k FS s[k]}')
+          index=0
+          rows=
+          defs=
+          while IFS=$'\t' read -r count key; do
+            img=
+            if [ -n "${avatar_of[${key}]+x}" ]; then
+              img=$(curl -sfL "${avatar_of[${key}]}" | base64 -w0)
+            fi
+            if [ -z "${img}" ]; then
+              email_hash=$(printf '%s' "${key}" | tr '[:upper:]' '[:lower:]' | sha256sum | cut -d' ' -f1)
+              img=$(curl -sfL "https://libravatar.org/avatar/${email_hash}?d=retro&s=40" | base64 -w0)
+            fi
+            if [ -z "${img}" ]; then
+              echo "Skip ${key}: avatar download failed"
+              continue
+            fi
+            col=$(( index % cols ))
+            row=$(( index / cols ))
+            x=$(( margin + col * (size + margin * 2) ))
+            y=$(( margin + row * (size + margin * 2) ))
+            defs+="<clipPath id=\"c${index}\"><circle cx=\"$(( x + size / 2 ))\" cy=\"$(( y + size / 2 ))\" r=\"$(( size / 2 ))\"/></clipPath>"
+            if [ -n "${avatar_of[${key}]+x}" ]; then
+              if [[ "${key}" == *'[bot]' ]]; then
+                href="https://github.com/features/actions"
+              else
+                href="https://github.com/$(jq -rn --arg l "${key}" '$l | @uri')"
+              fi
+              rows+="<a href=\"${href}\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"><image x=\"${x}\" y=\"${y}\" width=\"${size}\" height=\"${size}\" clip-path=\"url(#c${index})\" xlink:href=\"data:image/png;base64,${img}\"/></a>"
+            else
+              rows+="<image x=\"${x}\" y=\"${y}\" width=\"${size}\" height=\"${size}\" clip-path=\"url(#c${index})\" xlink:href=\"data:image/png;base64,${img}\"/>"
+            fi
+            index=$(( index + 1 ))
+          done < <(for k in "${!total[@]}"; do printf '%s\t%s\n' "${total[${k}]}" "${k}"; done | sort -rn)
+          rows_count=$(( (index + cols - 1) / cols ))
+          height=$(( rows_count * (size + margin * 2) ))
+          printf '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="%s" height="%s">\n<defs>%s</defs>\n%s\n</svg>\n' "${width}" "${height}" "${defs}" "${rows}" > CONTRIBUTORS.svg
 
       - name: Commit CONTRIBUTORS.svg to main
         run: |
