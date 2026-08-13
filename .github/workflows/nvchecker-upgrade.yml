@@ -33,7 +33,8 @@ jobs:
               echo "No .nvchecker.toml in $branch; skipping."
               continue
             fi
-            if ! pkgctl version upgrade; then
+            if ! output=$(pkgctl version upgrade 2>&1); then
+              printf '%s\n' "$output"
               echo "pkgctl version upgrade failed for $branch; skipping."
               continue
             fi
