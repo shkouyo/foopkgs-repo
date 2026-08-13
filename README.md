@@ -40,9 +40,7 @@ We are grateful to all contributors. If you would like to contribute, please rea
 
 You can request a new package by opening an [Issue](https://github.com/shkouyo/foopkgs-repo/issues/new?template=), or feel free to submit a [Pull request](https://github.com/shkouyo/foopkgs-repo/compare). The software you submit should be free ([as in freedom](https://www.gnu.org/philosophy/free-sw)) software, or at least [open source](https://opensource.org/osd) software.
 
-<a href="https://github.com/shkouyo/foopkgs-repo/graphs/contributors">
-  <img src="CONTRIBUTORS.svg" alt="Contributors of foopkgs" />
-</a>
+![Contributors of foopkgs](CONTRIBUTORS.svg)
 
 ## License
 

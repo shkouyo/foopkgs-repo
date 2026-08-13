@@ -34,7 +34,7 @@ jobs:
             if [ -n "${key}" ]; then
               avatar_of[${key}]="https://github.com/${key}.png?size=80"
             else
-              author=$(curl -sf -H "Authorization: Bearer ${GITHUB_TOKEN}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/commits/${sha}") || true
+              author=$(curl -sf "https://api.github.com/repos/${GITHUB_REPOSITORY}/commits/${sha}") || true
               key=$(jq -r '.author.login // empty' 2>/dev/null <<<"${author}") || true
               if [ -n "${key}" ]; then
                 avatar_of[${key}]="$(jq -r '.author.avatar_url // empty' 2>/dev/null <<<"${author}")&s=80" || true
