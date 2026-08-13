@@ -63,16 +63,7 @@ jobs:
             x=$(( margin + col * (size + margin * 2) ))
             y=$(( margin + row * (size + margin * 2) ))
             defs+="<clipPath id=\"c${index}\"><circle cx=\"$(( x + size / 2 ))\" cy=\"$(( y + size / 2 ))\" r=\"$(( size / 2 ))\"/></clipPath>"
-            if [ -n "${avatar_of[${key}]+x}" ]; then
-              if [[ "${key}" == *'[bot]' ]]; then
-                href="https://github.com/features/actions"
-              else
-                href="https://github.com/$(jq -rn --arg l "${key}" '$l | @uri')"
-              fi
-              rows+="<a href=\"${href}\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"><image x=\"${x}\" y=\"${y}\" width=\"${size}\" height=\"${size}\" clip-path=\"url(#c${index})\" xlink:href=\"data:image/png;base64,${img}\"/></a>"
-            else
-              rows+="<image x=\"${x}\" y=\"${y}\" width=\"${size}\" height=\"${size}\" clip-path=\"url(#c${index})\" xlink:href=\"data:image/png;base64,${img}\"/>"
-            fi
+            rows+="<image x=\"${x}\" y=\"${y}\" width=\"${size}\" height=\"${size}\" clip-path=\"url(#c${index})\" xlink:href=\"data:image/png;base64,${img}\"/>"
             index=$(( index + 1 ))
           done < <(for k in "${!total[@]}"; do printf '%s\t%s\n' "${total[${k}]}" "${k}"; done | sort -rn)
           rows_count=$(( (index + cols - 1) / cols ))
