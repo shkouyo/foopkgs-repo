@@ -87,7 +87,7 @@ The packaging workflow relies on `pkgctl`, which is provided by the [devtools pa
 
 ## CI
 
-The repository's continuous integration runs on GitHub Actions automatically for every package branch. It performs the checks listed above and updates packages whenever `.nvchecker.toml` reports a newer upstream version.
+Updates are applied automatically whenever `.nvchecker.toml` reports a newer upstream version.
 
 ## Commit messages
 
