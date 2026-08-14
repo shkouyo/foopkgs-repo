@@ -5,11 +5,6 @@ on:
     branches-ignore:
       - main
   workflow_dispatch:
-    inputs:
-      branch:
-        description: Branch to check
-        required: true
-        type: string
 
 permissions:
   contents: read
@@ -26,8 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
-          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.branch || github.ref_name }}
-
+          ref: ${{ github.ref_name }}
       - name: Skip branches without PKGBUILD
         if: hashFiles('PKGBUILD') == ''
         run: echo "No PKGBUILD in this branch; skipping."
