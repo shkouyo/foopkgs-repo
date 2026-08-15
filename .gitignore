@@ -1,28 +1,16 @@
 /*
 
+!/.varve.toml
+
 !/PKGBUILD
-!/README.md
-!/keys/
-!/keys/**
 !/.SRCINFO
 !/.gitignore
 !/.nvchecker.toml
-!/*.install
-!/*.sysusers
-!/*sysusers.conf
-!/*.tmpfiles
-!/*tmpfiles.conf
-!/*.logrotate
-!/*.pam
-!/*.service
-!/*.socket
-!/*.timer
-!/*.desktop
-!/*.hook
 
 !/LICENSE
 !/LICENSES/
 !/LICENSES/**
 !/REUSE.toml
 
-!/config
+!/config*
+!/*.patch
